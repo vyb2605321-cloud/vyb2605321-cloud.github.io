@@ -3,198 +3,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang cá nhân - [Họ và Tên]</title>
-    <!-- Font Google & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Hồ Sơ Cá Nhân | Portfolio</title>
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-pink: #f472b6; /* Hồng Pastel Đậm */
-            --secondary-pink: #fdf2f8; /* Hồng Pastel Nhạt */
-            --text-color: #4a5568;
-            --accent-pink: #db2777; /* Hồng Nhấn Mạnh */
+            --primary: #ff4e88;
+            --primary-gradient: linear-gradient(135deg, #ff4e88 0%, #ff8ab3 100%);
+            --secondary-gradient: linear-gradient(135deg, #ff8ab3 0%, #ffc2d6 100%);
+            --bg-light: #fff5f8;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #2c1820;
+            --text-muted: #7a5c68;
+            --shadow: 0 10px 30px rgba(255, 78, 136, 0.12);
+            --radius: 20px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            line-height: 1.6; 
-            color: var(--text-color); 
-            background-color: var(--secondary-pink);
-            padding: 20px;
-            min-height: 100vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        
-        /* Profile Header */
-        header { 
-            text-align: center; 
-            padding: 50px 20px; 
-            background: linear-gradient(135deg, var(--primary-pink), var(--accent-pink)); 
-            color: #fff; 
-            border-radius: 20px; 
-            margin-bottom: 30px;
-            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.2);
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .avatar-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 6px solid rgba(255, 255, 255, 0.8);
-            margin: 0 auto 20px auto;
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* --- HEADER & BANNER --- */
+        .header-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-top: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
-        .avatar-container img {
-            width: 100%;
-            height: 100%;
+
+        .banner {
+            height: 240px;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Background Elements */
+        .banner::before, .banner::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .banner::before { width: 300px; height: 300px; top: -50px; right: -50px; }
+        .banner::after { width: 200px; height: 200px; bottom: -80px; left: 10%; }
+
+        .profile-summary {
+            padding: 0 40px 40px;
+            display: flex;
+            align-items: flex-end;
+            gap: 30px;
+            margin-top: -80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 6px solid #ffffff;
             object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
         }
-        header h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 10px; }
-        header p { color: #fce7f3; font-size: 1.2em; font-weight: 400; }
-        
-        /* Section styling */
-        section { 
-            background: #fff; 
-            padding: 30px; 
-            margin-bottom: 25px; 
-            border-radius: 16px; 
-            border: 1px solid #fbcfe8;
-            box-shadow: 0 4px 10px rgba(244, 114, 182, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        .avatar-wrapper:hover .avatar {
+            transform: scale(1.03);
         }
-        section:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 18px rgba(244, 114, 182, 0.2);
+
+        .badge-online {
+            width: 20px;
+            height: 20px;
+            background: #4cd137;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
         }
-        
-        h2 { 
-            color: var(--accent-pink); 
-            font-size: 1.5em;
-            margin-bottom: 20px;
+
+        .profile-info {
+            flex-grow: 1;
+            padding-bottom: 10px;
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .profile-info .title {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- LAYOUT GRID --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        /* --- CARDS & SECTIONS --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 78, 136, 0.18);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 12px;
-            border-bottom: 2px solid #fce7f3;
+            color: var(--primary);
+            border-bottom: 2px solid #ffe3ec;
             padding-bottom: 10px;
         }
-        
-        /* Grid cho thông tin cá nhân */
-        .info-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
+
+        .section-title i {
+            background: #ffe3ec;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 1rem;
         }
+
+        /* --- PERSONAL INFO --- */
+        .info-list {
+            list-style: none;
+        }
+
         .info-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: #fff1f2;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #ffe4e6;
-        }
-        .info-item i { color: var(--accent-pink); font-size: 1.2em; }
-        
-        /* Custom List */
-        ul { list-style: none; }
-        li { 
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 12px;
-        }
-        li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: var(--primary-pink);
-            font-weight: bold;
-        }
-        
-        /* Tags cho kỹ năng & sở thích */
-        .tag-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .tag {
-            background: #fce7f3;
-            color: var(--accent-pink);
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.95em;
-            font-weight: 600;
-            border: 1px solid #fbcfe8;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        footer { text-align: center; padding: 25px; color: var(--accent-pink); font-size: 0.95em; }
+        .info-item:last-child { margin-bottom: 0; }
+
+        .info-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 24px;
+        }
+
+        .info-item .details span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item .details p {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .social-btn {
+            flex: 1;
+            height: 45px;
+            border-radius: 12px;
+            background: #ffe3ec;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--primary-gradient);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* --- TIMELINE (HỌC TẬP & KINH NGHIỆM) --- */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background: #ffe3ec;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #ffe3ec;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+
+        .timeline-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        /* --- SKILLS & TAGS --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #ffe3ec;
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-gradient);
+            color: #fff;
+        }
+
+        /* --- PROJECT CARDS --- */
+        .project-item {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #ffedf3;
+        }
+
+        .project-item h4 {
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- ACHIEVEMENTS & INTERESTS --- */
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .achievement-item i {
+            color: #ffb800;
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-summary {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: -100px;
+            }
+            .profile-info h1 {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
+        <!-- HEADER SECTION -->
+        <header class="header-card">
+            <div class="banner"></div>
+            <div class="profile-summary">
+                <div class="avatar-wrapper">
+                    <!-- Thay link ảnh đại diện cá nhân của bạn tại src -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=500" alt="Avatar" class="avatar">
+                    <div class="badge-online"></div>
+                </div>
+                <div class="profile-info">
+                    <h1>Nguyễn Trần Hồng Nhung</h1>
+                    <span class="title">Chuyên Viên Sáng Tạo Nội Dung & UX/UI Designer</span>
+                </div>
+            </div>
+        </header>
 
-    <header>
-        <div class="avatar-container">
-            <!-- Thay bằng link ảnh thật của bạn tại đây -->
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&q=80" alt="Avatar của bạn">
+        <!-- MAIN CONTENT GRID -->
+        <div class="main-grid">
+            
+            <!-- LEFT COLUMN -->
+            <div class="left-col">
+                <!-- THÔNG TIN CÁ NHÂN -->
+                <section class="card">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-user"></i> Cá Nhân
+                    </h2>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <i class="fa-regular fa-calendar"></i>
+                            <div class="details">
+                                <span>Ngày sinh</span>
+                                <p>26/05/2002</p>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="details">
+                                <span>Địa chỉ</span>
+                                <p>Quận 1, TP. Hồ Chí Minh</p>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <i class="fa-regular fa-envelope"></i>
+                            <div class="details">
+                                <span>Email liên hệ</span>
+                                <p>hongnhung.nguyen@email.com</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="social-links">
+                        <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </section>
+
+                <!-- KỸ NĂNG CHUYÊN MÔN -->
+                <section class="card">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Kỹ Năng
+                    </h2>
+                    <div class="skills-container">
+                        <span class="skill-tag">Figma / UI Design</span>
+                        <span class="skill-tag">Content Marketing</span>
+                        <span class="skill-tag">HTML / CSS / JS</span>
+                        <span class="skill-tag">Branding</span>
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">SEO Copywriting</span>
+                    </div>
+                </section>
+
+                <!-- SỞ THÍCH -->
+                <section class="card">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-heart"></i> Sở Thích
+                    </h2>
+                    <div class="skills-container">
+                        <span class="skill-tag">🎨 Thiết kế đồ họa</span>
+                        <span class="skill-tag">📸 Nhiếp ảnh</span>
+                        <span class="skill-tag">✈️ Du lịch trải nghiệm</span>
+                        <span class="skill-tag">📚 Đọc sách truyền cảm hứng</span>
+                    </div>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="right-col">
+                
+                <!-- QUÁ TRÌNH HỌC TẬP -->
+                <section class="card">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-graduation-cap"></i> Quá Trình Học Tập
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020 - 2024</div>
+                            <div class="timeline-title">Cử nhân Truyền thông Đa phương tiện</div>
+                            <div class="timeline-subtitle">Đại học Công nghệ TP.HCM (HUTECH)</div>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Tốt nghiệp Loại Giỏi. Đạt giải thưởng Đồ án xuất sắc khối ngành Truyền thông sáng tạo.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-title">Khóa học Chuyên sâu UI/UX Professional Design</div>
+                            <div class="timeline-subtitle">Học viện Thiết kế Sáng tạo</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- KINH NGHIỆM & DỰ ÁN THỰC TẾ -->
+                <section class="card">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-briefcase"></i> Kinh Nghiệm & Dự Án
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - Hiện tại</div>
+                            <div class="timeline-title">UX/UI Designer & Content Creator</div>
+                            <div class="timeline-subtitle">Công ty Sáng tạo Công nghệ Digital Art</div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1rem; margin: 20px 0 15px; color: var(--primary);">Dự Án Tiêu Biểu:</h3>
+                    
+                    <div class="project-item">
+                        <h4>Website Thương mại Điện tử Mỹ phẩm Pinky <span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem; color: var(--primary);"></i></span></h4>
+                        <p>Thiết kế toàn bộ giao diện người dùng (UI) và trải nghiệm mua sắm (UX) cho thương hiệu mỹ phẩm nội địa, giúp tăng 35% tỷ lệ chuyển đổi đơn hàng.</p>
+                    </div>
+
+                    <div class="project-item">
+                        <h4>Chiến dịch Truyền thông Sống Xanh 2024</h4>
+                        <p>Xây dựng nội dung và bộ nhận diện thương hiệu số thu hút hơn 50.000 lượt tương tác trên các nền tảng mạng xã hội.</p>
+                    </div>
+                </section>
+
+                <!-- THÀNH TÍCH & CHỨNG CHỈ -->
+                <section class="card">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-trophy"></i> Thành Tích & Chứng Chỉ
+                    </h2>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <i class="fa-solid fa-award"></i>
+                            <div>
+                                <strong>Giải Nhất Cuộc thi "Creative Student Design 2023"</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Do Hiệp hội Thiết kế Sáng tạo trao tặng.</p>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <i class="fa-solid fa-certificate"></i>
+                            <div>
+                                <strong>Chứng chỉ Google UX Design Professional Certificate (2023)</strong>
+                            </div>
+                        </li>
+                        <li class="achievement-item">
+                            <i class="fa-solid fa-medal"></i>
+                            <div>
+                                <strong>Tình nguyện viên xuất sắc chiến dịch Mùa Hè Xanh</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Điều phối ban truyền thông và hình ảnh dự án.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
         </div>
-        <h1>[Họ và Tên của bạn]</h1>
-        <p>[Lĩnh vực chuyên môn / Danh xưng]</p>
-    </header>
-
-    <section>
-        <h2><i class="fa-solid fa-address-card"></i> Thông tin cá nhân</h2>
-        <div class="info-grid">
-            <div class="info-item"><i class="fa-solid fa-cake-candles"></i> <span><strong>Ngày sinh:</strong> [Ngày/Tháng/Năm]</span></div>
-            <div class="info-item"><i class="fa-solid fa-map-location-dot"></i> <span><strong>Địa chỉ:</strong> [Thành phố, Quốc gia]</span></div>
-            <div class="info-item"><i class="fa-solid fa-envelope"></i> <span><strong>Email:</strong> [your.email@example.com]</span></div>
-            <div class="info-item"><i class="fa-brands fa-linkedin-in"></i> <span><strong>LinkedIn:</strong> [linkedin.com/in/yourname]</span></div>
-        </div>
-    </section>
-
-    <section>
-        <h2><i class="fa-solid fa-award"></i> Lĩnh vực chuyên môn</h2>
-        <ul>
-            <li><strong>Chuyên môn chính:</strong> [Web Development / Digital Marketing / Graphic Design]</li>
-            <li><strong>Kỹ năng cứng:</strong> HTML5, CSS3, JavaScript, UI/UX Design, Figma...</li>
-            <li><strong>Kỹ năng mềm:</strong> Giải quyết vấn đề, Làm việc nhóm, Giao tiếp.</li>
-        </ul>
-        <div class="tag-container">
-            <span class="tag">HTML5 & CSS3</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Figma</span>
-            <span class="tag">UI/UX</span>
-            <span class="tag">Git</span>
-        </div>
-    </section>
-
-    <section>
-        <h2><i class="fa-solid fa-briefcase"></i> Kinh nghiệm làm việc</h2>
-        <ul>
-            <li><strong>[Vị trí] tại [Tên công ty]</strong> - [Tháng/Năm - Tháng/Năm]</li>
-            <li><strong>[Vị trí] tại [Tên công ty]</strong> - [Tháng/Năm - Tháng/Năm]</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2><i class="fa-solid fa-graduation-cap"></i> Quá trình học tập</h2>
-        <ul>
-            <li><strong>[Tên Trường]</strong> - Ngành [Chuyên Ngành] ([Năm - Năm])</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2><i class="fa-solid fa-heart"></i> Sở thích</h2>
-        <div class="tag-container">
-            <span class="tag"><i class="fa-solid fa-camera-retro"></i> Nhiếp ảnh</span>
-            <span class="tag"><i class="fa-solid fa-palette"></i> Hội họa</span>
-            <span class="tag"><i class="fa-solid fa-plane-departure"></i> Du lịch</span>
-        </div>
-    </section>
-
-    <footer>
-        <p>© [Năm] [Họ và Tên của bạn]. Developed with ❤️ and published on GitHub Pages.</p>
-    </footer>
-
-</div>
+    </div>
 
 </body>
 </html>
