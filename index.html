@@ -4,204 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang cá nhân - [Họ và Tên]</title>
-    <!-- Font Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Google & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-color: #f7fafc;
-            --text-color: #2d3748;
-            --accent-color: #ff9a9e; /* Màu nhấn */
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.8;
-            color: var(--text-color);
-            background: var(--primary-gradient);
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: #4a5568; 
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4e6 100%);
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
         }
-
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: #fff;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        .container { max-width: 850px; margin: 0 auto; }
+        
+        /* Profile Header - Hồng Pastel gradient */
+        header { 
+            text-align: center; 
+            padding: 40px 20px; 
+            background: linear-gradient(135deg, #f472b6, #ec4899); 
+            color: #fff; 
+            border-radius: 20px; 
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.25);
         }
-
-        /* Profile Header */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px solid #eee;
-            padding-bottom: 30px;
-        }
-
         .avatar {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.9);
             object-fit: cover;
             margin-bottom: 15px;
-            border: 5px solid #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
-        header h1 {
-            font-size: 2.8em;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 5px;
-        }
-
-        header p {
-            color: #667eea;
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-
+        header h1 { font-size: 2.2em; font-weight: 700; margin-bottom: 5px; }
+        header p { color: #fce7f3; font-size: 1.1em; font-weight: 400; }
+        
         /* Section styling */
-        section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 12px;
-            background: var(--secondary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        section { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 25px 30px; 
+            margin-bottom: 20px; 
+            border-radius: 16px; 
+            border: 1px solid #fbcfe8;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        section:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.15);
         }
-
-        h2 {
-            color: var(--text-color);
-            border-bottom: 3px solid #667eea;
-            display: inline-block;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        li::before {
-            content: '✦';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .details p {
-            margin-bottom: 10px;
-        }
-
-        /* Custom icons for details */
-        .icon-text {
+        
+        h2 { 
+            color: #db2777; 
+            font-size: 1.35em;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
+            gap: 10px;
+            border-bottom: 2px solid #fce7f3;
+            padding-bottom: 8px;
         }
-
-        .icon-text span {
-            margin-right: 10px;
-            color: #667eea;
+        
+        /* Grid cho thông tin cá nhân */
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 15px; 
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff1f2;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid #ffe4e6;
+        }
+        .info-item i { color: #db2777; font-size: 1.1em; }
+        
+        /* Custom List */
+        ul { list-style: none; }
+        li { 
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #f472b6;
+            font-weight: bold;
+        }
+        
+        /* Timeline cho kinh nghiệm */
+        .experience-item {
+            border-left: 3px solid #f472b6;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        .experience-item h3 { font-size: 1.1em; color: #831843; }
+        .experience-item span { font-size: 0.85em; color: #9d174d; font-weight: 600; }
+        
+        /* Tags cho kỹ năng & sở thích */
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .tag {
+            background: #fce7f3;
+            color: #be185d;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
             font-weight: 600;
+            border: 1px solid #fbcfe8;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: #fff;
-            font-size: 1em;
-        }
-
-        /* Media Queries for Mobile responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px;
-            }
-            header h1 {
-                font-size: 2.2em;
-            }
-        }
+        footer { text-align: center; padding: 20px; color: #9d174d; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <!-- Chèn link ảnh đại diện của bạn vào src bên dưới -->
-            <img src="https://via.placeholder.com/150" alt="Avatar" class="avatar">
-            <h1>[Họ và Tên của bạn]</h1>
-            <p>[Chuyên môn / Danh xưng - VD: Full-stack Developer]</p>
-        </header>
+<div class="container">
 
-        <section class="details">
-            <h2>📌 Thông tin cá nhân</h2>
-            <div class="icon-text"><span>Ngày sinh:</span> DD/MM/YYYY</div>
-            <div class="icon-text"><span>Địa chỉ:</span> Thành phố, Việt Nam</div>
-            <div class="icon-text"><span>Email:</span> email@example.com</div>
-            <div class="icon-text"><span>LinkedIn:</span> linkedin.com/in/yourname</div>
-        </section>
+    <header>
+        <!-- Chèn link ảnh đại diện của bạn vào src bên dưới -->
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Avatar" class="avatar">
+        <h1>[Họ và Tên của bạn]</h1>
+        <p>[Lĩnh vực chuyên môn / Danh xưng - VD: Full-stack Developer]</p>
+    </header>
 
-        <section>
-            <h2>💻 Chuyên môn & Kỹ năng</h2>
-            <ul>
-                <li><strong>Lập trình Web:</strong> HTML, CSS, JavaScript, React, Node.js</li>
-                <li><strong>Cơ sở dữ liệu:</strong> MySQL, MongoDB</li>
-                <li><strong>Kỹ năng mềm:</strong> Giải quyết vấn đề, Quản lý thời gian, Làm việc nhóm.</li>
+    <section>
+        <h2><i class="fa-solid fa-user"></i> Thông tin cá nhân</h2>
+        <div class="info-grid">
+            <div class="info-item"><i class="fa-solid fa-calendar"></i> <span><strong>Ngày sinh:</strong> DD/MM/YYYY</span></div>
+            <div class="info-item"><i class="fa-solid fa-location-dot"></i> <span><strong>Địa chỉ:</strong> Thành phố, Việt Nam</span></div>
+            <div class="info-item"><i class="fa-solid fa-envelope"></i> <span><strong>Email:</strong> email@example.com</span></div>
+            <div class="info-item"><i class="fa-brands fa-linkedin"></i> <span><strong>LinkedIn:</strong> linkedin.com/in/yourname</span></div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-laptop-code"></i> Lĩnh vực chuyên môn</h2>
+        <ul>
+            <li><strong>Chuyên môn chính:</strong> Lập trình Web / Data Analyst / Digital Marketing...</li>
+            <li><strong>Kỹ năng cứng:</strong> HTML5, CSS3, JavaScript, Python, Git...</li>
+            <li><strong>Kỹ năng mềm:</strong> Giải quyết vấn đề, Tư duy logic, Làm việc nhóm.</li>
+        </ul>
+        <div class="tag-container">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Git</span>
+            <span class="tag">Teamwork</span>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fa-solid fa-briefcase"></i> Kinh nghiệm làm việc</h2>
+        <div class="experience-item">
+            <h3>🔹 [Vị trí công việc] – [Tên công ty]</h3>
+            <span>(2023 - Hiện tại)</span>
+            <ul style="margin-top: 8px;">
+                <li>Phát triển các tính năng chính cho ứng dụng web.</li>
+                <li>Tối ưu hiệu năng hệ thống giúp tăng 25% tốc độ tải trang.</li>
             </ul>
-        </section>
+        </div>
+    </section>
 
-        <section>
-            <h2>💼 Kinh nghiệm làm việc</h2>
-            <p><strong>[Vị trí] – [Tên công ty]</strong> <em>(2023 - Hiện tại)</em></p>
-            <ul>
-                <li>Phát triển và quản lý các dự án...</li>
-                <li>Tối ưu hiệu năng ứng dụng...</li>
-            </ul>
-        </section>
+    <section>
+        <h2><i class="fa-solid fa-graduation-cap"></i> Học tập & Thành tích</h2>
+        <ul>
+            <li><strong>Đại học:</strong> [Tên Trường Đại học] – Ngành [Chuyên Ngành] (2020 - 2024)</li>
+            <li><strong>Giải thưởng:</strong> [Tên giải thưởng / Học bổng] (2023)</li>
+        </ul>
+    </section>
 
-        <section>
-            <h2>🎓 Học tập & Thành tích</h2>
-            <ul>
-                <li><strong>[Tên Trường]</strong> – Ngành [Tên Ngành] (2020 - 2024)</li>
-                <li><strong>[Tên giải thưởng / Học bổng]</strong> (2023)</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>🎯 Sở thích</h2>
-            <p>Đọc sách công nghệ, chạy bộ, viết blog và tìm hiểu công nghệ mới.</p>
-        </section>
-
-    </div>
+    <section>
+        <h2><i class="fa-solid fa-heart"></i> Sở thích</h2>
+        <div class="tag-container">
+            <span class="tag"><i class="fa-solid fa-book"></i> Đọc sách</span>
+            <span class="tag"><i class="fa-solid fa-person-running"></i> Chạy bộ</span>
+            <span class="tag"><i class="fa-solid fa-plane"></i> Du lịch</span>
+            <span class="tag"><i class="fa-solid fa-code"></i> Side Projects</span>
+        </div>
+    </section>
 
     <footer>
         <p>© 2026 [Họ và Tên]. Published with GitHub Pages.</p>
     </footer>
+
+</div>
 
 </body>
 </html>
